@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Btn" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:background">@drawable/rounded_corner_transparent</item>
+        <item name="android:foreground">@drawable/rounded_corner_transparent</item>
+    </style>
+    <style name="Logo" >
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textSize">44sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

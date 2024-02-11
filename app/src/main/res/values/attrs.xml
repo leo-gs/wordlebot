@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KeyboardButton">
+<!--        <attr name="btnState" format="enum">-->
+<!--            <enum name="KNOWN_CORRECT_POSITION" value="0"/>-->
+<!--            <enum name="KNOWN_SOMEWHERE_IN_WORD" value="1"/>-->
+<!--            <enum name="KNOWN_NOT_IN_WORD" value="2"/>-->
+<!--            <enum name="UNKNOWN" value="3"/>-->
+<!--        </attr>-->
+    </declare-styleable>
+</resources>
+

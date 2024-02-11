@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="on_primary">#010B13</color>
+    <color name="on_primary_deemph">#BFD3D5D5</color>
+    <color name="primary">#F5F5F5</color>
+    <color name="keyboard">@color/primary</color>
+    <color name="state_not_in_word">@color/primary</color>
+    <color name="state_in_word">#FFD600</color>
+    <color name="state_correct_position">#AEEA00</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>

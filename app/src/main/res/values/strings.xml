@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Helpfle</string>
+    <string name="begin">Go!</string>
+    <string name="delete">Back</string>
+    <string name="enter">Go</string>
+    <string name="dialog_outcome_won">You won!</string>
+    <string name="dialog_outcome_lost">You lost!</string>
+    <string-array name="keyboard_topRow">
+        <item>Q</item>
+        <item>W</item>
+        <item>E</item>
+        <item>R</item>
+        <item>T</item>
+        <item>Y</item>
+        <item>U</item>
+        <item>I</item>
+        <item>O</item>
+        <item>P</item>
+    </string-array>
+    <string-array name="keyboard_middleRow">
+        <item>A</item>
+        <item>S</item>
+        <item>D</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+    </string-array>
+    <string-array name="keyboard_bottomRow">
+        <item>Z</item>
+        <item>X</item>
+        <item>C</item>
+        <item>V</item>
+        <item>B</item>
+        <item>N</item>
+        <item>M</item>
+    </string-array>
+
+</resources>

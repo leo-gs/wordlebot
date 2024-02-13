@@ -14,7 +14,7 @@ private const val TAG_DATABASEHELPER = "DATABASEHELPER"
 
 private object Schema {
     object Entry : BaseColumns {
-        const val TABLE_NAME = "dictionary"
+        const val TABLE_NAME = "words"
         const val COLUMN_NAME_WORD = "word"
         const val COLUMN_NAME_SOLUTION = "solution"
         const val COLUMN_NAME_SOLUTIONORDER = "solutionOrder"
@@ -43,7 +43,7 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
 
     companion object {
         const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "Wordle.db"
+        const val DATABASE_NAME = "Helpfle.db"
     }
 
     init {
@@ -59,8 +59,8 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
         if (db != null) {
             Log.d(TAG_DATABASEHELPER, "begining loadDataFromTextFile")
             loadFile(db, this.context.assets.open(solnPath), isSolution = 1)
+            generateSolutionOrder(db)
             loadFile(db, this.context.assets.open(dictPath), isSolution = 0)
-            shuffleIds(db)
         }
 
     }
@@ -78,7 +78,7 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
         }
     }
 
-    private fun shuffleIds(db: SQLiteDatabase) {
+    private fun generateSolutionOrder(db: SQLiteDatabase) {
         val entryIds = arrayListOf<Int>()
         val shuffledIds = arrayListOf<Int>()
 
@@ -88,8 +88,11 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
         ).use { cursor ->
             cursor.moveToFirst()
             val colIdx = cursor.getColumnIndexOrThrow(BaseColumns._ID)
+            var nextId = cursor.getLong(colIdx).toInt()
+            entryIds += nextId
+            shuffledIds += nextId
             while (cursor.moveToNext()) {
-                val nextId = cursor.getLong(colIdx).toInt()
+                nextId = cursor.getLong(colIdx).toInt()
                 entryIds += nextId
                 shuffledIds += nextId
             }

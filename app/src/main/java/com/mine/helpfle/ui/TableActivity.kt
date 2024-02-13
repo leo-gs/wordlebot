@@ -8,15 +8,11 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.lifecycleScope
-import com.mine.helpfle.ui.Animation.Companion.flip
-import com.mine.helpfle.ui.Animation.Companion.wiggle
 import com.mine.helpfle.Letter
 import com.mine.helpfle.Letter.STATE
 import com.mine.helpfle.R
 import com.mine.helpfle.data.IDatabase
 import com.mine.helpfle.data.DatabaseHelper
-import kotlinx.coroutines.launch
 
 const val TABLE_EXTRAS_SOLUTION = "solution"
 const val TAG_TABLE_ACTIVITY = "TABLE_ACTIVITY"
@@ -32,7 +28,7 @@ class TableActivity : AppCompatActivity() {
     private lateinit var gridAdapter : GridAdapter
     private lateinit var keyboardLayout : ConstraintLayout
 
-    // TODO: implement "helping" dialog
+    // TODO: implement "helping" dialog / activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table)
@@ -108,7 +104,21 @@ class TableActivity : AppCompatActivity() {
 
             cursor.getRowOffset().let { idx -> idx.minus(5)..idx.minus(5).plus(4) }
                 .forEachIndexed { i, idx ->
-                    letterList[idx].anim = { v -> flip(v, i) }
+                    letterList[idx].anim = Flip {
+                        when {
+                            cursor.won && i == 4 -> showDialog(
+                                getString(R.string.dialog_outcome_won),
+                                IDatabase.OUTCOME.WON
+                            )
+
+                            cursor.guessesRemaining() == 0 && i == 4 -> showDialog(
+                                getString(R.string.dialog_outcome_lost),
+                                IDatabase.OUTCOME.LOST
+                            )
+
+                            else -> { Log.d(TAG_GRIDANIMATION, "empty lambda") }
+                        }
+                    }
                 }
 
             gridAdapter.notifyDataSetChanged()
@@ -127,15 +137,9 @@ class TableActivity : AppCompatActivity() {
                     }
             }
 
-            if (cursor.won) {
-                showDialog(getString(R.string.dialog_outcome_won), IDatabase.OUTCOME.WON)
-            } else if (cursor.guessesRemaining() == 0) {
-                showDialog(getString(R.string.dialog_outcome_lost), IDatabase.OUTCOME.LOST)
-            }
-
         } else {
             cursor.getRowOffset().let { i -> i..i.plus(4) }.forEach { i ->
-                letterList[i].anim = { v -> wiggle(v) }
+                letterList[i].anim = Wiggle {}
             }
             gridAdapter.notifyDataSetChanged()
         }
@@ -146,6 +150,7 @@ class TableActivity : AppCompatActivity() {
         return resources.getColor(colorId, this.theme)
     }
 
+    // TODO: allow hard input
     private fun notifyKeyboardButtonPressed(letter : String) {
         Log.v(TAG_TABLE_ACTIVITY, "Keyboard Button pressed: $letter")
 
@@ -168,7 +173,6 @@ class TableActivity : AppCompatActivity() {
     }
 
     private fun showDialog(title : String, outcome : IDatabase.OUTCOME) {
-        // TODO: delay showing dialog until after animations are done
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 
         builder

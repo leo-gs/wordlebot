@@ -1,11 +1,11 @@
 package com.mine.helpfle
 
-import android.animation.AnimatorSet
-import androidx.cardview.widget.CardView
+import com.mine.helpfle.ui.GridAnimation
+import com.mine.helpfle.ui.NoAnim
 
 class Letter(letter: String) {
 
-    var anim : (CardView) -> AnimatorSet? = { null }
+    var anim : GridAnimation = NoAnim({})
 
     companion object {
         fun backgroundColor(state : STATE) : Int {
@@ -51,6 +51,6 @@ class Letter(letter: String) {
     }
 
     fun clearAnim() {
-        anim = { null }
+        anim = NoAnim({})
     }
 }

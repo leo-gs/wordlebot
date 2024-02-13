@@ -1,7 +1,8 @@
 package com.mine.helpfle.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,16 +23,22 @@ class GridAdapter(context : Context, letterList : ArrayList<Letter>) : ArrayAdap
         val letter = getItem(position)!!
 
         val cellView = listItemView!!.findViewById<CardView>(R.id.cv_table_cell)
+        val cellText = listItemView.findViewById<TextView>(R.id.tv_table_cell)
 
-        cellView.backgroundTintList = ColorStateList.valueOf(
-            context.resources.getColor(letter.backgroundColor(), context.theme)
-        )
+        val bgColor = context.resources.getColor(letter.backgroundColor(), context.theme)
+        val txtColor = context.resources.getColor(letter.textColor(), context.theme)
 
-        val cellTextView = listItemView.findViewById<TextView>(R.id.tv_table_cell)
-        cellTextView.text = letter.letter
-        cellTextView.setTextColor(context.resources.getColor(letter.textColor(), context.theme))
+        letter.anim.getAnimation(listItemView, position % 5, bgColor, txtColor).also {
+            it.addListener(object : AnimatorListenerAdapter() {
 
-        letter.anim(cellView)?.start()
+                override fun onAnimationEnd(animation: Animator) {
+                    cellView.background.setTint(bgColor)
+                    cellText.setTextColor(txtColor)
+                    cellText.text = letter.letter
+                }
+            })
+            it.start()
+        }
 
         return listItemView
     }

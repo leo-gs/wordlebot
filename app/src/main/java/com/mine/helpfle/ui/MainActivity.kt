@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.lifecycle.lifecycleScope
 import com.mine.helpfle.R
 import com.mine.helpfle.data.IDatabase
 import com.mine.helpfle.data.DatabaseHelper
-import kotlinx.coroutines.launch
 
 const val TAG_MAINACTIVITY = "MAINACTIVITY"
 

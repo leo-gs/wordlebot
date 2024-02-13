@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
 
-const val TAG_KEYBOARDBUTTON = "KEYBOARDBUTTON"
-
 open class Btn : AppCompatButton {
 
     constructor(context: Context, label: String) : super(context) {

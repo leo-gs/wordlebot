@@ -2,8 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Helpfle" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="buttonStyle">@style/Btn</item>
+        <item name="android:statusBarColor">@color/systembars</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/systembars</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
-    <style name="Theme.Helpfle" parent="Base.Theme.Helpfle" />
+    <style name="Theme.Helpfle" parent="Base.Theme.Helpfle">
+        <item name="buttonStyle">@style/Btn</item>
+    </style>
 </resources>

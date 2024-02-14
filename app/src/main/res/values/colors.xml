@@ -5,19 +5,27 @@
     <color name="smokey_white">#F5F5F5</color>
     <color name="warm_black">#010B13</color>
     <color name="offwhite">#EBEBEB</color>
-    <color name="translucent_gray">#BFD3D5D5</color>
-    <color name="buttercup_yellow">#FFD600</color>
-    <color name="lima_bean_green">#AEEA00</color>
+    <color name="gray_40">#66010B13</color>
+    <color name="mikado_yellow">#FFC400</color>
+    <color name="mint_green">#09C388</color>
+
+<!--    Dark mode-specific colors-->
+    <color name="smokey_black">#100C08</color>
+    <color name="night_black">#151513</color>
+    <color name="olive">#796F15</color>
+    <color name="hunter_green">#174F1B</color>
+    <color name="battleship_gray">#858585</color>
 
 <!--    Conceptual color mapping-->
     <color name="primary">@color/smokey_white</color>
-    <color name="secondary">@color/offwhite</color>
+    <color name="primaryVariant">@color/offwhite</color>
     <color name="on_primary">@color/warm_black</color>
-    <color name="on_primary_deemph">@color/translucent_gray</color>
-    <color name="accent1">@color/buttercup_yellow</color>
-    <color name="accent2">@color/lima_bean_green</color>
-    <color name="state_unknown">@color/secondary</color>
-    <color name="state_not_in_word">@color/secondary</color>
+    <color name="on_primary_deemph">@color/gray_40</color>
+    <color name="accent1">@color/mikado_yellow</color>
+    <color name="accent2">@color/mint_green</color>
+
+    <color name="state_unknown">@color/primaryVariant</color>
+    <color name="state_not_in_word">@color/primaryVariant</color>
     <color name="state_in_word">@color/accent1</color>
     <color name="state_correct_position">@color/accent2</color>
     <color name="on_state_unknown">@color/on_primary</color>
@@ -26,17 +34,20 @@
     <color name="on_state_correct_position">@color/on_primary</color>
 
 <!--    Applying conceptual map to specific UI elements-->
+    <color name="systembars">@color/primaryVariant</color>
     <color name="card_back">@color/primary</color>
     <color name="card_bg">@color/primary</color>
     <color name="card_border">@color/on_primary</color>
     <color name="card_text">@color/on_primary</color>
-    <color name="logo">@color/on_primary</color>
+    <color name="logo">@color/on_primary_deemph</color>
     <color name="main_bg">@color/primary</color>
-    <color name="main_btn">@color/accent1</color>
+    <color name="main_btn_bg">@color/primaryVariant</color>
     <color name="main_btn_text">@color/on_primary</color>
     <color name="table_bg">@color/primary</color>
     <color name="keyboard_bg">@color/state_not_in_word</color>
     <color name="keyboard_btndelete_bg">@color/keyboard_bg</color>
     <color name="keyboard_btnenter_bg">@color/keyboard_bg</color>
+    <color name="keyboard_btndelete_text">@color/on_primary</color>
+    <color name="keyboard_btnenter_text">@color/on_primary</color>
 
 </resources>

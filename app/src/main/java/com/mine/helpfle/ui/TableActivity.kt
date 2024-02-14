@@ -72,9 +72,19 @@ class TableActivity : AppCompatActivity() {
             notifyEnterPressed()
         }
 
-        keyboardLayout.findViewById<ActionButton>(R.id.btn_delete).setOnClickListener {
-            notifyDeletePressed()
+
+        keyboardLayout.findViewById<ActionButton>(R.id.btn_delete).apply {
+            // short / normal click: delete one letter
+            this.setOnClickListener { notifyDeletePressed() }
+            // long click: empty row
+            this.setOnLongClickListener {
+                while (!cursor.isRowEmpty()) {
+                    notifyDeletePressed()
+                }
+                true
+            }
         }
+
     }
 
     /* Helper function for adding buttons to keyboard */
@@ -178,6 +188,7 @@ class TableActivity : AppCompatActivity() {
         Log.i(TAG_TABLE_ACTIVITY, "Delete pressed")
     }
 
+    // TODO: dialog theme / colors
     private fun showDialog(title : String, outcome : IDatabase.OUTCOME) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 
@@ -207,6 +218,10 @@ class TableActivity : AppCompatActivity() {
 
         fun isRowComplete() : Boolean {
             return currentRow * 5 + 4 < cursor
+        }
+
+        fun isRowEmpty() : Boolean {
+            return currentRow * 5 == cursor
         }
 
         fun onEnterPressed() : Boolean {

@@ -43,8 +43,8 @@
         android:layout_height="0dp"
         android:padding="10dp"
         android:clipChildren="false"
-        android:foregroundGravity="fill"
-        android:numColumns="5" />
+        android:foregroundGravity="bottom"
+        android:numColumns="5"/>
 
     <include layout="@layout/keyboard"
         android:id="@+id/keyboard"

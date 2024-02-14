@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">@color/smokey_black</color>
+    <color name="primaryVariant">@color/night_black</color>
+    <color name="on_primary">@color/offwhite</color>
+    <color name="on_primary_deemph">@color/battleship_gray</color>
+    <color name="accent1">@color/olive</color>
+    <color name="accent2">@color/hunter_green</color>
 
+
+    <color name="card_border">@color/primaryVariant</color>
+
+    <color name="logo">@color/battleship_gray</color>
 </resources>

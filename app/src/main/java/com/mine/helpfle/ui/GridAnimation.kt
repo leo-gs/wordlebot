@@ -103,18 +103,6 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
             )
         }
 
-        val bgAlpha = AnimatorSet().apply {
-            startDelay = rowIdx * (dur - 30)
-            playSequentially(
-                ofFloat(cellView, "alpha", 0F, 0F).apply {
-                    duration = dur
-                },
-                ofFloat(cellView, "alpha", 0F, 1F).apply {
-                    duration = 1
-                }
-            )
-        }
-
         val bgTint = AnimatorSet().apply {
             startDelay = 100 + rowIdx * (dur - 30)
             playSequentially(
@@ -159,7 +147,7 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
 
         return AnimatorSet().apply {
             Log.v(TAG_TABLE_ACTIVITY, "position = $rowIdx, startDelay = $startDelay")
-            playTogether(scale, bgTint, bgAlpha, textColor, textAlpha)
+            playTogether(scale, bgTint, textColor, textAlpha)
             this.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     Log.d(TAG_GRIDANIMATION, "onAnimationComplete")

@@ -46,9 +46,10 @@ class TableActivity : AppCompatActivity() {
 
         gridAdapter = GridAdapter(this, letterList)
         gridView.adapter = gridAdapter
+        gridView.isVerticalScrollBarEnabled = false
 
 
-        keyboardLayout = findViewById(R.id.keyboard_layout)
+        keyboardLayout = findViewById(R.id.keyboard)
         letterManager = KeyboardStateManager()
         database = DatabaseHelper(this, "wordle-solutions.txt","wordle-dictionary.txt" )
 
@@ -78,10 +79,15 @@ class TableActivity : AppCompatActivity() {
 
     /* Helper function for adding buttons to keyboard */
     private fun createKeyboardButton(letter: String) : KeyboardButton {
+        Log.d(TAG_TABLE_ACTIVITY, "createKeyboardButton letter=$letter")
         val kb = KeyboardButton(this, letter)
         kb.setOnClickListener {
             notifyKeyboardButtonPressed(letter)
         }
+        kb.updateColor(
+            background = renderColor(Letter.backgroundColor(STATE.UNKNOWN)),
+            text = renderColor(Letter.textColor(STATE.UNKNOWN))
+        )
         kb.tag = letter
         return kb
     }

@@ -4,13 +4,18 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:paddingStart">5dp</item>
         <item name="android:paddingEnd">5dp</item>
-        <item name="android:background">@drawable/rounded_corner_transparent</item>
-        <item name="android:foreground">@drawable/rounded_corner_transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="addElevationShadow">false</item>
+        <item name="android:background">@drawable/rounded_corner</item>
+        <item name="android:stateListAnimator">"@null"</item>
     </style>
-    <style name="Logo" >
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">sans-serif-smallcaps</item>
-        <item name="android:textSize">44sp</item>
+    <style name="Logo">
+        <item name="android:font">@font/hobo</item>
+        <item name="android:fontFamily">@font/hobo</item>
+        <item name="font">@font/hobo</item>
+        <item name="fontFamily">@font/hobo</item>
+        <item name="android:textSize">54sp</item>
+        <item name="android:textColor">@color/logo</item>
         <item name="android:gravity">center</item>
     </style>
 </resources>

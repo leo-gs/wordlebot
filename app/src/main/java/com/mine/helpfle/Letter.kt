@@ -10,7 +10,7 @@ class Letter(letter: String) {
     companion object {
         fun backgroundColor(state : STATE) : Int {
             return when (state) {
-                STATE.UNKNOWN -> R.color.primary
+                STATE.UNKNOWN -> R.color.state_unknown
                 STATE.KNOWN_NOT_IN_WORD -> R.color.state_not_in_word
                 STATE.KNOWN_SOMEWHERE_IN_WORD -> R.color.state_in_word
                 STATE.KNOWN_CORRECT_POSITION -> R.color.state_correct_position
@@ -19,10 +19,10 @@ class Letter(letter: String) {
 
         fun textColor(state : STATE) : Int {
             return when (state) {
-                STATE.UNKNOWN -> R.color.on_primary
-                STATE.KNOWN_NOT_IN_WORD -> R.color.on_primary_deemph
-                STATE.KNOWN_SOMEWHERE_IN_WORD -> R.color.on_primary
-                STATE.KNOWN_CORRECT_POSITION -> R.color.on_primary
+                STATE.UNKNOWN -> R.color.on_state_unknown
+                STATE.KNOWN_NOT_IN_WORD -> R.color.on_state_not_in_word
+                STATE.KNOWN_SOMEWHERE_IN_WORD -> R.color.on_state_in_word
+                STATE.KNOWN_CORRECT_POSITION -> R.color.on_state_correct_position
             }
         }
     }

@@ -36,12 +36,10 @@ class KeyboardButton : Btn {
 
     constructor(context: Context, attrs: AttributeSet, int: Int) : super(context, attrs, int)
 
-    fun updateColor(background : Int, text : Int? = null) {
-        backgroundTintList = ColorStateList.valueOf(background)
+    fun updateColor(background : Int, text : Int) {
+        this.background.setTint(background)
+        setTextColor(ColorStateList.valueOf(text))
 
-        if (text != null) {
-            setTextColor(ColorStateList.valueOf(text))
-        }
     }
 }
 

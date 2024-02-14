@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="on_primary">#010B13</color>
-    <color name="on_primary_deemph">#BFD3D5D5</color>
-    <color name="primary">#F5F5F5</color>
-    <color name="card_back">@color/primary</color>
-    <color name="keyboard">@color/primary</color>
-    <color name="state_not_in_word">@color/primary</color>
-    <color name="state_in_word">#FFD600</color>
-    <color name="state_correct_position">#AEEA00</color>
+<!--    Theme-specific hex goes here (base daytime theme)-->
     <color name="transparent">#00FFFFFF</color>
+    <color name="smokey_white">#F5F5F5</color>
+    <color name="warm_black">#010B13</color>
+    <color name="offwhite">#EBEBEB</color>
+    <color name="translucent_gray">#BFD3D5D5</color>
+    <color name="buttercup_yellow">#FFD600</color>
+    <color name="lima_bean_green">#AEEA00</color>
+
+<!--    Conceptual color mapping-->
+    <color name="primary">@color/smokey_white</color>
+    <color name="secondary">@color/offwhite</color>
+    <color name="on_primary">@color/warm_black</color>
+    <color name="on_primary_deemph">@color/translucent_gray</color>
+    <color name="accent1">@color/buttercup_yellow</color>
+    <color name="accent2">@color/lima_bean_green</color>
+    <color name="state_unknown">@color/secondary</color>
+    <color name="state_not_in_word">@color/secondary</color>
+    <color name="state_in_word">@color/accent1</color>
+    <color name="state_correct_position">@color/accent2</color>
+    <color name="on_state_unknown">@color/on_primary</color>
+    <color name="on_state_not_in_word">@color/on_primary_deemph</color>
+    <color name="on_state_in_word">@color/on_primary</color>
+    <color name="on_state_correct_position">@color/on_primary</color>
+
+<!--    Applying conceptual map to specific UI elements-->
+    <color name="card_back">@color/primary</color>
+    <color name="card_bg">@color/primary</color>
+    <color name="card_border">@color/on_primary</color>
+    <color name="card_text">@color/on_primary</color>
+    <color name="logo">@color/on_primary</color>
+    <color name="main_bg">@color/primary</color>
+    <color name="main_btn">@color/accent1</color>
+    <color name="main_btn_text">@color/on_primary</color>
+    <color name="table_bg">@color/primary</color>
+    <color name="keyboard_bg">@color/state_not_in_word</color>
+    <color name="keyboard_btndelete_bg">@color/keyboard_bg</color>
+    <color name="keyboard_btnenter_bg">@color/keyboard_bg</color>
+
 </resources>

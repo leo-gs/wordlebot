@@ -44,7 +44,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.65"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/dialog_icon_tint" />
+            app:tint="@color/dialog_icon_tint"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/dialog_header_text"

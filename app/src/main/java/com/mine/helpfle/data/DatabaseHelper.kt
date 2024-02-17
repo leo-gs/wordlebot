@@ -45,7 +45,7 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
     private var dictPath: String
 
     companion object {
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
         const val DATABASE_NAME = "Helpfle.db"
     }
 

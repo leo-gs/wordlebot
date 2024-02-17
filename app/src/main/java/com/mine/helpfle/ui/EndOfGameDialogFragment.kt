@@ -38,8 +38,7 @@ class EndOfGameDialogFragment : DialogFragment() {
     private fun getSerializableArgCompat(bundle : Bundle, extrasTag : String) : Serializable? {
         @Suppress("DEPRECATION")
         return when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> bundle.getSerializable(
-                extrasTag, OUTCOME::class.java)!!
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> bundle.getSerializable(extrasTag)!!
             else -> bundle.getSerializable(extrasTag)
         }
     }

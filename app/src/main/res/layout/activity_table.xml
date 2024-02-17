@@ -45,7 +45,6 @@
         android:foregroundGravity="bottom"
         android:numColumns="5"/>
 
-<!--    TODO: fix keyboard being clipped on smaller screens-->
     <include layout="@layout/keyboard"
         android:id="@+id/keyboard"
         android:layout_width="match_parent"

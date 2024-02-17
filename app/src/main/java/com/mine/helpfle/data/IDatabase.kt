@@ -7,7 +7,9 @@ interface IDatabase {
 
     fun getCurrentSolution() : String
 
-    fun onFinishGame(gameState : OUTCOME)
+    fun onFinishGame(gameOutcome : OUTCOME, numGuesses : Int?)
 
     fun lookupGuess(guess : String) : Boolean
+
+    fun getUserStats() : UserStats
 }

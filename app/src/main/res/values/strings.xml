@@ -3,8 +3,33 @@
     <string name="begin">Go!</string>
     <string name="delete">Back</string>
     <string name="enter">Go</string>
-    <string name="dialog_outcome_won">You won!</string>
-    <string name="dialog_outcome_lost">You lost!</string>
+    <string name="dialog_header_won">You won!</string>
+    <string name="dialog_header_lost">You lost!</string>
+    <string name="dialog_btn_dismiss">Dismiss</string>
+    <string name="dialog_btn_newgame">New Game</string>
+    <string name="dialog_icon_won_contentDiscription">icon of medal</string>
+    <string name="dialog_icon_lost_contentDiscription">icon of crying face</string>
+    <plurals name="stats_gamesPlayed">
+        <item quantity="one">Games played: %d game</item>
+        <item quantity="other">Games played: %d games</item>
+    </plurals>
+    <plurals name="stats_gamesWon">
+        <item quantity="one">Games won: %d game</item>
+        <item quantity="other">Games won: %d games</item>
+    </plurals>
+    <plurals name="stats_gamesLost">
+        <item quantity="one">Games lost: %d game</item>
+        <item quantity="other">Games lost: %d games</item>
+    </plurals>
+    <string name="stats_avgGuesses">Average guesses: %.1f guesses</string>
+    <plurals name="stats_currentStreak">
+        <item quantity="one">Current streak: %d game</item>
+        <item quantity="other">Current streak: %d games</item>
+    </plurals>
+    <plurals name="stats_longestStreak">
+        <item quantity="one">Longest streak: %d game</item>
+        <item quantity="other">Longest streak: %d games</item>
+    </plurals>
     <string-array name="keyboard_topRow">
         <item>Q</item>
         <item>W</item>

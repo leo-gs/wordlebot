@@ -5,7 +5,7 @@ import com.mine.helpfle.ui.NoAnim
 
 class Letter(letter: String) {
 
-    var anim : GridAnimation = NoAnim({})
+    var anim : GridAnimation = NoAnim { }
 
     companion object {
         fun backgroundColor(state : STATE) : Int {
@@ -51,6 +51,6 @@ class Letter(letter: String) {
     }
 
     fun clearAnim() {
-        anim = NoAnim({})
+        anim = NoAnim { }
     }
 }

@@ -5,16 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.GridView
 import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentTransaction
 import com.mine.helpfle.Letter
 import com.mine.helpfle.Letter.STATE
 import com.mine.helpfle.R
 import com.mine.helpfle.data.IDatabase
+import com.mine.helpfle.data.IDatabase.OUTCOME
 import com.mine.helpfle.data.DatabaseHelper
 
-const val TABLE_EXTRAS_SOLUTION = "solution"
+const val EXTRAS_TABLE_SOLUTION = "TABLE_SOLUTION"
 const val TAG_TABLE_ACTIVITY = "TABLE_ACTIVITY"
 
 class TableActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class TableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table)
-        solution = intent.extras!!.getString(TABLE_EXTRAS_SOLUTION).toString().uppercase()
+        solution = intent.extras!!.getString(EXTRAS_TABLE_SOLUTION).toString().uppercase()
 
         gridView = findViewById(R.id.table_gridview)
 
@@ -122,17 +123,14 @@ class TableActivity : AppCompatActivity() {
                 .forEachIndexed { i, idx ->
                     letterList[idx].anim = Flip {
                         when {
-                            cursor.won && i == 4 -> showDialog(
-                                getString(R.string.dialog_outcome_won),
-                                IDatabase.OUTCOME.WON
-                            )
+                            // user won game --> show end of game dialog
+                            cursor.won && i == 4 -> finishGame(OUTCOME.WON, 6 - cursor.guessesRemaining())
 
-                            cursor.guessesRemaining() == 0 && i == 4 -> showDialog(
-                                getString(R.string.dialog_outcome_lost),
-                                IDatabase.OUTCOME.LOST
-                            )
+                            // user ran out of guesses --> show end of game dialog
+                            cursor.guessesRemaining() == 0 && i == 4 -> finishGame(OUTCOME.LOST, null)
 
-                            else -> { Log.d(TAG_GRIDANIMATION, "empty lambda") }
+                            // reset animations and continue game
+                            else -> { }
                         }
                     }
                 }
@@ -189,25 +187,37 @@ class TableActivity : AppCompatActivity() {
     }
 
     // TODO: dialog theme / colors
-    private fun showDialog(title : String, outcome : IDatabase.OUTCOME) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+    private fun finishGame(outcome : OUTCOME, numGuesses : Int?) {
+        database.onFinishGame(outcome, numGuesses)
+        val stats = database.getUserStats()
 
-        builder
-            .setMessage("Start a new game?")
-            .setTitle(title)
-            .setPositiveButton("New game") { dialog, _ ->
-                dialog.dismiss()
-                val intent = Intent(this, TableActivity::class.java)
+        val transaction = supportFragmentManager.beginTransaction()
+        // For a polished look, specify a transition animation.
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        // To make it fullscreen, use the 'content' root view as the container
+        // for the fragment, which is always the root view for the activity.
+        transaction
+            .add(
+                android.R.id.content,
+                EndOfGameDialogFragment
+                    .newInstance(outcome, stats)
+            )
+            .addToBackStack(null)
+            .commit()
+    }
 
-                database.onFinishGame(outcome)
-                intent.putExtra(TABLE_EXTRAS_SOLUTION, database.getCurrentSolution())
+    fun onStartNewGame() {
+        val intent = Intent(this, TableActivity::class.java)
+        intent.putExtra(EXTRAS_TABLE_SOLUTION, database.getCurrentSolution())
 
-                finish()
-                startActivity(intent)
-            }
+        finish()
+        startActivity(intent)
+    }
 
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+    fun onEndGameDialogDismissed() {
+        val intent = Intent(this, MainActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
     inner class GridViewCursor {

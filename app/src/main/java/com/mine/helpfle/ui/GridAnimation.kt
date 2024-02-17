@@ -150,7 +150,7 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
             playTogether(scale, bgTint, textColor, textAlpha)
             this.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    Log.d(TAG_GRIDANIMATION, "onAnimationComplete")
+                    Log.v(TAG_GRIDANIMATION, "onAnimationComplete")
                     onAnimationComplete()
                 }
             })

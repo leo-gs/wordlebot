@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, TableActivity::class.java)
 
                 intent.putExtra(
-                    TABLE_EXTRAS_SOLUTION,
+                    EXTRAS_TABLE_SOLUTION,
                     word
                 )
 
@@ -43,6 +43,5 @@ class MainActivity : AppCompatActivity() {
         word = dbInstance.getCurrentSolution()
         // TODO: update UI w animation to change when btn is enabled
         btn.visibility = View.VISIBLE
-
     }
 }

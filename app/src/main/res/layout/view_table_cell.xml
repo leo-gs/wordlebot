@@ -40,11 +40,11 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp" >
 
+<!--        TODO: implement letter style in grid and keyboard (need to refactor custom buttton -->
         <TextView
             android:id="@+id/tv_table_cell"
             android:gravity="center"
             android:textSize="30sp"
-            android:textStyle="bold"
             android:textColor="@color/card_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

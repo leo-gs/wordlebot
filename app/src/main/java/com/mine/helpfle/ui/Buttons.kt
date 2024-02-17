@@ -39,7 +39,6 @@ class KeyboardButton : Btn {
     fun updateColor(background : Int, text : Int) {
         this.background.setTint(background)
         setTextColor(ColorStateList.valueOf(text))
-
     }
 }
 

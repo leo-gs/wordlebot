@@ -6,13 +6,11 @@ import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ObjectAnimator.ofFloat
-import android.animation.ObjectAnimator.ofInt
 import android.animation.ValueAnimator
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.LinearInterpolator
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.mine.helpfle.R
 
@@ -82,12 +80,13 @@ class Wiggle(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplet
 
 class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete) {
 
-    override fun getAnimation(listItemView: View, rowIdx : Int, bgColor: Int, txtColor: Int) : AnimatorSet {
+    override fun getAnimation(listItemView: View, rowIdx : Int, bgColor: Int, textColor: Int) : AnimatorSet {
 
         Log.v(TAG_GRIDANIMATION, "getAnimation Flip(position=$rowIdx)")
 
-        val cellView = listItemView.findViewById<CardView>(R.id.cv_table_cell)
-        val txtView = listItemView.findViewById<TextView>(R.id.tv_table_cell)
+//        val cellView = listItemView.findViewById<CardView>(R.id.cv_table_cell)
+//        val txtView = listItemView.findViewById<TextView>(R.id.letter_text_view)
+        val letterView = listItemView.findViewById<LetterTextView>(R.id.letter_view)
         val dur = 300L
 
         val scale = AnimatorSet().apply {
@@ -108,37 +107,55 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
             playSequentially(
                 ValueAnimator.ofObject(
                     ArgbEvaluator(),
-                    cellView.backgroundTintList!!.defaultColor,
+                    letterView.bgColor,
                     bgColor
                 ).also { va ->
                     va.duration = dur - 100
                     va.addUpdateListener {
-                        val value = it.animatedValue as Int
-                        cellView.background.setTint(value)
+                        val newColor = it.animatedValue as Int
+                        letterView.bgColor = newColor
                     }
                     va.interpolator = AccelerateDecelerateInterpolator()
                 }
             )
         }
 
-        val textColor = AnimatorSet().apply {
-            startDelay = rowIdx * (dur - 30)
+        val textCol = AnimatorSet().apply {
+            startDelay = 100 + rowIdx * (dur - 30)
             playSequentially(
-                ofInt(txtView, "textColor", txtView.textColors.defaultColor, txtView.textColors.defaultColor).apply {
-                    duration = dur
-                },
-                ofInt(txtView, "textColor", txtColor, txtColor).apply {
-                    duration = dur
+                ValueAnimator.ofObject(
+                    ArgbEvaluator(),
+                    letterView.textColor,
+                    textColor
+                ).also { va ->
+                    va.duration = dur - 100
+                    va.addUpdateListener {
+                        val newColor = it.animatedValue as Int
+                        letterView.textColor = newColor
+                    }
+                    va.interpolator = AccelerateDecelerateInterpolator()
                 }
             )
         }
 
+//        val textColor = AnimatorSet().apply {
+//            startDelay = rowIdx * (dur - 30)
+//            playSequentially(
+//                ofInt(letterView, "textColor", letterView.textView.textColors.defaultColor, txtColor).apply {
+//                    duration = dur
+//                },
+//                ofInt(letterView, "textColor", txtColor, txtColor).apply {
+//                    duration = dur
+//                }
+//            )
+//        }
+
         val textAlpha = AnimatorSet().apply {
             playSequentially(
-                ofFloat(txtView, "alpha", 0F, 0F).apply {
+                ofFloat(letterView, "alpha", 0F, 0F).apply {
                     duration = dur
                 },
-                ofFloat(txtView, "alpha", 0F, 1F).apply {
+                ofFloat(letterView, "alpha", 0F, 1F).apply {
                     startDelay = rowIdx * (dur - 30)
                     duration = 50
                 }
@@ -146,11 +163,9 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
         }
 
         return AnimatorSet().apply {
-            Log.v(TAG_TABLE_ACTIVITY, "position = $rowIdx, startDelay = $startDelay")
-            playTogether(scale, bgTint, textColor, textAlpha)
+            playTogether(scale, bgTint, textCol, textAlpha)
             this.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    Log.v(TAG_GRIDANIMATION, "onAnimationComplete")
                     onAnimationComplete()
                 }
             })

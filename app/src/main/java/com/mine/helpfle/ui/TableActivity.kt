@@ -89,16 +89,16 @@ class TableActivity : AppCompatActivity() {
     }
 
     /* Helper function for adding buttons to keyboard */
-    private fun createKeyboardButton(letter: String) : KeyboardButton {
-        Log.d(TAG_TABLE_ACTIVITY, "createKeyboardButton letter=$letter")
-        val kb = KeyboardButton(this, letter)
+    private fun createKeyboardButton(letter: String) : KeyboardLetter {
+        val kb = KeyboardLetter(this).also {
+            it.letter = letter
+            it.bgColor = renderColor(LetterTextView.backgroundColor(STATE.UNKNOWN))
+            it.textColor = renderColor(LetterTextView.textColor(STATE.UNKNOWN))
+        }
         kb.setOnClickListener {
             notifyKeyboardButtonPressed(letter)
         }
-        kb.updateColor(
-            background = renderColor(Letter.backgroundColor(STATE.UNKNOWN)),
-            text = renderColor(Letter.textColor(STATE.UNKNOWN))
-        )
+
         kb.tag = letter
         return kb
     }
@@ -140,13 +140,11 @@ class TableActivity : AppCompatActivity() {
             // Update keyboard colors with new information
             guessedLetters.forEach { letter ->
                 keyboardLayout
-                    .findViewWithTag<KeyboardButton>(letter)
+                    .findViewWithTag<LetterTextView>(letter)
                     .also { kb ->
                         letterManager.get(letter).also { newState ->
-                            kb.updateColor(
-                                background = renderColor(Letter.backgroundColor(newState)),
-                                text = renderColor(Letter.textColor(newState))
-                            )
+                            kb.bgColor = renderColor(LetterTextView.backgroundColor(newState))
+                            kb.textColor = renderColor(LetterTextView.textColor(newState))
                         }
                     }
             }

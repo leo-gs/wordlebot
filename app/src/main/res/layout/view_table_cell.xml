@@ -40,12 +40,12 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp" >
 
-<!--        TODO: implement letter style in grid and keyboard (need to refactor custom buttton -->
-        <TextView
-            android:id="@+id/tv_table_cell"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:textColor="@color/card_text"
+<!--    TODO: implement letter style in grid and keyboard (need to refactor custom buttton -->
+        <com.mine.helpfle.ui.LetterTextView
+            android:id="@+id/letter_view"
+            app:drawBorder="true"
+            app:letter="W"
+            app:textSize="@dimen/letterView_textSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -15,9 +15,18 @@
         <item name="android:fontFamily">@font/hobo</item>
         <item name="font">@font/hobo</item>
         <item name="fontFamily">@font/hobo</item>
-        <item name="fontVariationSettings">"'wght' 700</item>
+        <item name="fontVariationSettings">"'wght' 600</item>
         <item name="android:textSize">54sp</item>
         <item name="android:textColor">@color/logo</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="LetterTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:font">@font/librefranklin</item>
+        <item name="android:fontFamily">@font/librefranklin</item>
+        <item name="font">@font/librefranklin</item>
+        <item name="fontFamily">@font/librefranklin</item>
+        <item name="fontVariationSettings">"'wght' 600</item>
+        <item name="android:textColor">@color/on_state_unknown</item>
         <item name="android:gravity">center</item>
     </style>
 </resources>

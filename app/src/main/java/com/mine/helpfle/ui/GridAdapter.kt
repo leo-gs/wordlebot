@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.mine.helpfle.Letter
 import com.mine.helpfle.R
+import com.mine.helpfle.ui.LetterTextView.Companion.backgroundColor
+import com.mine.helpfle.ui.LetterTextView.Companion.textColor
 
 class GridAdapter(context : Context, letterList : ArrayList<Letter>) : ArrayAdapter<Letter> (context, 0, letterList) {
 
@@ -22,19 +24,18 @@ class GridAdapter(context : Context, letterList : ArrayList<Letter>) : ArrayAdap
 
         val letter = getItem(position)!!
 
-        val cellView = listItemView!!.findViewById<CardView>(R.id.cv_table_cell)
-        val cellText = listItemView.findViewById<TextView>(R.id.tv_table_cell)
+        val letterView = listItemView!!.findViewById<LetterTextView>(R.id.letter_view)
 
-        val bgColor = context.resources.getColor(letter.backgroundColor(), context.theme)
-        val txtColor = context.resources.getColor(letter.textColor(), context.theme)
+        letterView.state = letter.state
+//
+//        letterView.bgColor = context.resources.getColor(backgroundColor(letter.state), context.theme)
+//        letterView.textColor = context.resources.getColor(textColor(letter.state), context.theme)
 
-        letter.anim.getAnimation(listItemView, position % 5, bgColor, txtColor).also {
+        letter.anim.getAnimation(listItemView, position % 5, letterView.bgColor, letterView.textColor).also {
             it.addListener(object : AnimatorListenerAdapter() {
 
                 override fun onAnimationEnd(animation: Animator) {
-                    cellView.background.setTint(bgColor)
-                    cellText.setTextColor(txtColor)
-                    cellText.text = letter.letter
+                    letterView.letter = letter.letter
                 }
             })
             it.start()

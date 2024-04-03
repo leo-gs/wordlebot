@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.mine.helpfle.R
 import com.mine.helpfle.data.IDatabase
 import com.mine.helpfle.data.DatabaseHelper
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var dbInstance : IDatabase
     private lateinit var word : String
-    private lateinit var btn : Button
+    private lateinit var btn : ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         Log.i(TAG_MAINACTIVITY, "Initializing database")
 
-        btn = findViewById<Button>(R.id.button_main_begin).also {
+        btn = findViewById<ConstraintLayout>(R.id.button_main_begin).also {
 
             it.setOnClickListener {
-                val intent = Intent(this, TableActivity::class.java)
+                val intent = Intent(this, GridActivity::class.java)
 
                 intent.putExtra(
                     EXTRAS_TABLE_SOLUTION,

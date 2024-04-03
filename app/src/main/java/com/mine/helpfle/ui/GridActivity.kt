@@ -3,10 +3,14 @@ package com.mine.helpfle.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.GridView
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentTransaction
 import com.mine.helpfle.Letter
 import com.mine.helpfle.Letter.STATE
@@ -18,7 +22,7 @@ import com.mine.helpfle.data.DatabaseHelper
 const val EXTRAS_TABLE_SOLUTION = "TABLE_SOLUTION"
 const val TAG_TABLE_ACTIVITY = "TABLE_ACTIVITY"
 
-class TableActivity : AppCompatActivity() {
+class GridActivity : AppCompatActivity() {
 
     private lateinit var cursor : GridViewCursor
     lateinit var letterList : ArrayList<Letter>
@@ -28,18 +32,19 @@ class TableActivity : AppCompatActivity() {
     private lateinit var gridView : GridView
     private lateinit var gridAdapter : GridAdapter
     private lateinit var keyboardLayout : ConstraintLayout
+//    private var guesses = arrayListOf<String>()
 
     // TODO: implement "helping" dialog / activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_table)
+        setContentView(R.layout.activity_grid)
         solution = intent.extras!!.getString(EXTRAS_TABLE_SOLUTION).toString().uppercase()
 
         gridView = findViewById(R.id.table_gridview)
 
         letterList = ArrayList<Letter>().also {
             for (i in 0..29) {
-                it.add(Letter())
+                it.add(Letter.empty())
             }
         }
 
@@ -69,12 +74,12 @@ class TableActivity : AppCompatActivity() {
             keyboardBottomRow.addView(createKeyboardButton(letter))
         }
 
-        keyboardLayout.findViewById<ActionButton>(R.id.btn_enter).setOnClickListener {
+        keyboardLayout.findViewById<AppCompatButton>(R.id.btn_enter).setOnClickListener {
             notifyEnterPressed()
         }
 
 
-        keyboardLayout.findViewById<ActionButton>(R.id.btn_delete).apply {
+        keyboardLayout.findViewById<AppCompatButton>(R.id.btn_delete).apply {
             // short / normal click: delete one letter
             this.setOnClickListener { notifyDeletePressed() }
             // long click: empty row
@@ -86,14 +91,20 @@ class TableActivity : AppCompatActivity() {
             }
         }
 
+//        findViewById<ImageView>(R.id.grid_bot_icon).setOnClickListener {
+//            onShowWordleBotDialog()
+//        }
+        findViewById<ImageView>(R.id.grid_bot_icon).visibility = View.GONE
+
     }
 
     /* Helper function for adding buttons to keyboard */
-    private fun createKeyboardButton(letter: String) : KeyboardLetter {
-        val kb = KeyboardLetter(this).also {
+    private fun createKeyboardButton(letter: String) : KeyboardCardLetter {
+        val kb = KeyboardCardLetter(this).also {
             it.letter = letter
-            it.bgColor = renderColor(LetterTextView.backgroundColor(STATE.UNKNOWN))
-            it.textColor = renderColor(LetterTextView.textColor(STATE.UNKNOWN))
+
+//            it.bgColor = renderColor(STATE.UNKNOWN.backgroundColor)
+//            it.textColor = renderColor(STATE.UNKNOWN.textColor)
         }
         kb.setOnClickListener {
             notifyKeyboardButtonPressed(letter)
@@ -143,8 +154,8 @@ class TableActivity : AppCompatActivity() {
                     .findViewWithTag<LetterTextView>(letter)
                     .also { kb ->
                         letterManager.get(letter).also { newState ->
-                            kb.bgColor = renderColor(LetterTextView.backgroundColor(newState))
-                            kb.textColor = renderColor(LetterTextView.textColor(newState))
+                            kb.bgColor = renderColor(newState.backgroundColor)
+                            kb.textColor = renderColor(newState.textColor)
                         }
                     }
             }
@@ -205,7 +216,7 @@ class TableActivity : AppCompatActivity() {
     }
 
     fun onStartNewGame() {
-        val intent = Intent(this, TableActivity::class.java)
+        val intent = Intent(this, GridActivity::class.java)
         intent.putExtra(EXTRAS_TABLE_SOLUTION, database.getCurrentSolution())
 
         finish()
@@ -216,6 +227,28 @@ class TableActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         finish()
         startActivity(intent)
+    }
+
+    private fun onShowWordleBotDialog() {
+        val transaction = supportFragmentManager.beginTransaction()
+        // For a polished look, specify a transition animation.
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        // To make it fullscreen, use the 'content' root view as the container
+        // for the fragment, which is always the root view for the activity.
+        transaction
+            .add(
+                android.R.id.content,
+                WordleBotDialogFragment.newInstance(),
+                TAG_DIALOG_WORDLEBOT
+            )
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun onWordleBotDialogDismissed() {
+        supportFragmentManager.findFragmentByTag(TAG_DIALOG_WORDLEBOT)?.let {
+            (it as DialogFragment).dismiss()
+        }
     }
 
     inner class GridViewCursor {
@@ -323,6 +356,9 @@ class TableActivity : AppCompatActivity() {
                 letterManager.update(letter.letter, letter.state)
             }
 
+            // Keep track of which guesses have been made (for WordleBot)
+//            guesses.add(guessBuffer)
+
             Log.d(TAG_TABLE_ACTIVITY, "$guessBuffer == $solution")
             if (guessBuffer == solution) {
                 won = true
@@ -338,12 +374,17 @@ class TableActivity : AppCompatActivity() {
 
     class KeyboardStateManager {
 
-        private var states : HashMap<String, STATE> = HashMap()
+        private var states : HashMap<String, STATE>
 
-        init {
+        constructor() {
+            states = HashMap()
             for (c in 'A'..'Z') {
                 states[c.toString()] = STATE.UNKNOWN
             }
+        }
+
+        constructor(states : HashMap<String, STATE>) {
+            this.states = states
         }
 
         fun update(letter : String, state : STATE) {
@@ -353,5 +394,13 @@ class TableActivity : AppCompatActivity() {
         fun get(letter: String): STATE {
             return states[letter]!!
         }
+
+        fun toSerializable() : HashMap<String, STATE> {
+            return states
+        }
+
+//        fun genPossibleCombos() : ArrayList<String> {
+//
+//        }
     }
 }

@@ -5,8 +5,8 @@
     <color name="smokey_white">#F5F5F5</color>
     <color name="warm_black">#010B13</color>
     <color name="offwhite">#EBEBEB</color>
-    <color name="gray_40">#66010B13</color>
-    <color name="dialog_header">#FFC400</color>
+    <color name="gray_30">#4D010B13</color>
+    <color name="mikado_yellow">#FFC400</color>
     <color name="mint_green">#09C388</color>
 
 <!--    Dark mode-specific colors-->
@@ -20,8 +20,8 @@
     <color name="primary">@color/smokey_white</color>
     <color name="primaryVariant">@color/offwhite</color>
     <color name="on_primary">@color/warm_black</color>
-    <color name="on_primary_deemph">@color/gray_40</color>
-    <color name="accent1">@color/dialog_header</color>
+    <color name="on_primary_deemph">@color/gray_30</color>
+    <color name="accent1">@color/mikado_yellow</color>
     <color name="accent2">@color/mint_green</color>
 
     <color name="state_unknown">@color/primaryVariant</color>
@@ -45,6 +45,7 @@
     <color name="main_btn_text">@color/on_primary</color>
     <color name="table_bg">@color/primary</color>
     <color name="keyboard_bg">@color/state_not_in_word</color>
+    <color name="keyboard_on_bg">@color/on_primary</color>
     <color name="keyboard_btndelete_bg">@color/keyboard_bg</color>
     <color name="keyboard_btnenter_bg">@color/keyboard_bg</color>
     <color name="keyboard_btndelete_text">@color/on_primary</color>
@@ -52,9 +53,13 @@
     <color name="dialog_header_won_bg">@color/state_correct_position</color>
     <color name="dialog_header_lost_bg">@color/state_not_in_word</color>
     <color name="dialog_icon_tint">@color/primary</color>
-    <color name="dialog_header_text">@color/on_primary</color>
-    <color name="dialog_body_bg">@color/primaryVariant</color>
+    <color name="header_title">@color/on_primary</color>
+    <color name="dialog_body_bg">@color/primary</color>
     <color name="statsview_bg">@color/primary</color>
     <color name="statsview_text">@color/on_primary</color>
+    <color name="accent_btn_border">@color/on_primary</color>
+    <color name="accent_btn_text">@color/on_primary</color>
+    <color name="accent_btn">@color/primaryVariant</color>
+    <color name="dialog_outcome_text">@color/on_primary</color>
 
 </resources>

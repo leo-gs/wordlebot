@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import com.mine.helpfle.R
@@ -61,66 +61,46 @@ class EndOfGameDialogFragment : DialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_dialog_endofgame, container, false).apply {
 
-            findViewById<ImageView>(R.id.dialog_header_icon).apply {
-                setImageResource(
-                    when (gameOutcome) {
-                        OUTCOME.WON -> R.drawable.header_game_won
-                        OUTCOME.LOST -> R.drawable.header_game_lost
-                    }
-                )
-                alpha = when (gameOutcome) {
-                    OUTCOME.WON -> 0.45F
-                    OUTCOME.LOST -> 0.60F
-                }
-                contentDescription = resources.getString(
-                    when (gameOutcome) {
-                        OUTCOME.WON -> R.string.dialog_icon_won_contentDiscription
-                        OUTCOME.LOST -> R.string.dialog_icon_lost_contentDiscription
-                    }
-                )
-            }
-
-            findViewById<TextView>(R.id.dialog_header_text).text = resources.getString(
+            findViewById<TextView>(R.id.dialog_outcome_text).text = resources.getString(
                 when(gameOutcome) {
-                    OUTCOME.WON -> R.string.dialog_header_won
-                    OUTCOME.LOST -> R.string.dialog_header_lost
+                    OUTCOME.WON -> R.string.dialog_outcome_won
+                    OUTCOME.LOST -> R.string.dialog_outcome_lost
                 }
             )
 
-            findViewById<ConstraintLayout>(R.id.dialog_header)
-                .setBackgroundColor(resources.getColor(
-                    when(gameOutcome) {
-                        OUTCOME.WON -> R.color.dialog_header_won_bg
-                        OUTCOME.LOST -> R.color.dialog_header_lost_bg
-                    }, context.theme))
+//            findViewById<ConstraintLayout>(R.id.dialog_header)
+//                .setBackgroundColor(resources.getColor(
+//                    when(gameOutcome) {
+//                        OUTCOME.WON -> R.color.dialog_header_won_bg
+//                        OUTCOME.LOST -> R.color.dialog_header_lost_bg
+//                    }, context.theme))
 
             findViewById<TextView>(R.id.stats_numGames).text = resources
-                .getQuantityString(R.plurals.stats_gamesPlayed, userStats.numGames, userStats.numGames)
+                .getQuantityString(R.plurals.stats_games_quantity, userStats.numGames, userStats.numGames)
 
             findViewById<TextView>(R.id.stats_gamesWon).text = resources
-                .getQuantityString(R.plurals.stats_gamesWon, userStats.gamesWon, userStats.gamesWon)
+                .getQuantityString(R.plurals.stats_games_quantity, userStats.gamesWon, userStats.gamesWon)
 
             findViewById<TextView>(R.id.stats_gamesLost).text = resources
-                .getQuantityString(R.plurals.stats_gamesLost, userStats.gamesLost, userStats.gamesLost)
+                .getQuantityString(R.plurals.stats_games_quantity, userStats.gamesLost, userStats.gamesLost)
 
             findViewById<TextView>(R.id.stats_avgGuesses).text = resources
-                .getString(R.string.stats_avgGuesses, userStats.avgGuesses)
-            Log.d(TAG_DIALOG_ENDOFGAME, "avgGuesses = ${userStats.avgGuesses}")
+                .getString(R.string.stats_avgGuesses_avg, userStats.avgGuesses)
 
             findViewById<TextView>(R.id.stats_currentStreak).text = resources
-                .getQuantityString(R.plurals.stats_currentStreak, userStats.currentStreak, userStats.currentStreak)
+                .getQuantityString(R.plurals.stats_streak_quantity, userStats.currentStreak, userStats.currentStreak)
 
             findViewById<TextView>(R.id.stats_longestStreak).text = resources
-                .getQuantityString(R.plurals.stats_longestStreak, userStats.longestStreak, userStats.longestStreak)
+                .getQuantityString(R.plurals.stats_streak_quantity, userStats.longestStreak, userStats.longestStreak)
 
             // Set positive button action
-            findViewById<ActionButton>(R.id.dialog_btn_newgame).setOnClickListener {
-                (activity as TableActivity).onStartNewGame()
+            findViewById<ConstraintLayout>(R.id.dialog_btn_newgame).setOnClickListener {
+                (activity as GridActivity).onStartNewGame()
             }
-            // Set negative button action
-            findViewById<ActionButton>(R.id.dialog_btn_dismiss).setOnClickListener {
-                (activity as TableActivity).onEndGameDialogDismissed()
-            }
+//            // Set negative button action
+//            findViewById<AppCompatButton>(R.id.dialog_btn_dismiss).setOnClickListener {
+//                (activity as GridActivity).onEndGameDialogDismissed()
+//            }
         }
     }
 }

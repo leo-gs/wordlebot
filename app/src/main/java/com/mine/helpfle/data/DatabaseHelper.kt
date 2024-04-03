@@ -232,7 +232,7 @@ class DatabaseHelper(context : Context, solnPath : String, dictPath : String) :
         return db.rawQuery("SELECT ${BaseColumns._ID}, ${Schema.Entry.COLUMN_NAME_WORD} " +
                 "FROM ${Schema.Entry.TABLE_NAME} " +
                 "WHERE ${Schema.Entry.COLUMN_NAME_SOLUTION} = 1 " +
-                "AND ${Schema.Entry.COLUMN_NAME_WON} = 0 " +
+                "AND ${Schema.Entry.COLUMN_NAME_TRIED} = 0 " +
                 "ORDER BY ${Schema.Entry.COLUMN_NAME_SOLUTIONORDER} LIMIT 1",
             null
         ).use {cursor ->

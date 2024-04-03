@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/table_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.TableActivity">
+    tools:context=".ui.GridActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_table_10"
@@ -21,16 +21,35 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".80"/>
 
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/guideline_grid_vertical"
+        app:layout_constraintGuide_percent=".50"/>
+
+    <include layout="@layout/view_logo"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:id="@+id/logo"
-        android:text="@string/app_name"
-        android:paddingTop="20dp"
-        android:textSize="28sp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_grid_vertical"
+        app:layout_constraintEnd_toEndOf="@id/guideline_grid_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline_table_10"
-        style="@style/LogoText"/>
+        app:layout_constraintBottom_toBottomOf="@id/guideline_table_10"/>
+
+
+    <ImageView
+        android:id="@+id/grid_bot_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:tint="@color/logo"
+        app:layout_constraintTop_toTopOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        android:src="@drawable/fa_icon_robot"
+        android:paddingHorizontal="10dp"
+        android:contentDescription="@string/grid_startHelperActivityIcon" />
 
     <GridView
         android:id="@+id/table_gridview"
@@ -45,7 +64,7 @@
         android:foregroundGravity="bottom"
         android:numColumns="5"/>
 
-    <include layout="@layout/keyboard"
+    <include layout="@layout/view_keyboard"
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="0dp"

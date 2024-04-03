@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/statsview_bg"
+    android:stretchColumns="0">
+
+    <TableRow>
+        <TextView
+            android:layout_span="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/HeaderTitle"
+            android:text="@string/statistics" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_gamesPlayed"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_numGames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="52"
+            style="@style/GameStatsValueNumOnly"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_gamesWon"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_gamesWon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="37"
+            style="@style/GameStatsValueNumOnly"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_gamesLost"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_gamesLost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="15"
+            style="@style/GameStatsValueNumOnly"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_avgGuesses"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_avgGuesses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="3.8"
+            style="@style/GameStatsValueNumOnly"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_span="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/HeaderSecond"
+            android:text="@string/winningStreak" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_currentStreak"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_currentStreak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="3 games"
+            style="@style/GameStatsValue"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_longestStreak"
+            style="@style/GameStats"/>
+        <TextView
+            android:id="@+id/stats_longestStreak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="11 games"
+            style="@style/GameStatsValue"/>
+    </TableRow>
+</TableLayout>

@@ -80,13 +80,9 @@ class Wiggle(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplet
 
 class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete) {
 
-    override fun getAnimation(listItemView: View, rowIdx : Int, bgColor: Int, textColor: Int) : AnimatorSet {
+    override fun getAnimation(listItemView: View, rowIdx : Int, bgColor: Int, txtColor: Int) : AnimatorSet {
 
-        Log.v(TAG_GRIDANIMATION, "getAnimation Flip(position=$rowIdx)")
-
-//        val cellView = listItemView.findViewById<CardView>(R.id.cv_table_cell)
-//        val txtView = listItemView.findViewById<TextView>(R.id.letter_text_view)
-        val letterView = listItemView.findViewById<LetterTextView>(R.id.letter_view)
+        val letterView = listItemView.findViewById<CardLetterTextView>(R.id.letter_view)
         val dur = 300L
 
         val scale = AnimatorSet().apply {
@@ -126,7 +122,7 @@ class Flip(onAnimationComplete: () -> Unit) : GridAnimation(onAnimationComplete)
                 ValueAnimator.ofObject(
                     ArgbEvaluator(),
                     letterView.textColor,
-                    textColor
+                    txtColor
                 ).also { va ->
                     va.duration = dur - 100
                     va.addUpdateListener {

@@ -7,7 +7,6 @@
     <color name="accent1">@color/olive</color>
     <color name="accent2">@color/hunter_green</color>
 
-
     <color name="card_border">@color/primaryVariant</color>
 
     <color name="logo">@color/battleship_gray</color>

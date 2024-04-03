@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="stats_textSize">28sp</dimen>
-    // TODO: figure out why text keep getting bigger
     <dimen name="letterView_textSize">8sp</dimen>
     <dimen name="keyboardLetter_textSize">4sp</dimen>
+    <dimen name="header_title">42sp</dimen>
+    <dimen name="header_title_padding_top">42sp</dimen>
+    <dimen name="header_title_padding_bottom">8sp</dimen>
+    <dimen name="header_second">24sp</dimen>
+    <dimen name="header_second_padding_top">14sp</dimen>
+    <dimen name="header_second_padding_bottom">4sp</dimen>
+    <dimen name="body_text">18sp</dimen>
+    <dimen name="body_emph_text">20sp</dimen>
+    <dimen name="body_emph_text_numOnly">24sp</dimen>
 </resources>

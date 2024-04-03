@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Btn" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:minWidth">0dp</item>
-        <item name="android:paddingStart">5dp</item>
-        <item name="android:paddingEnd">5dp</item>
-        <item name="android:paddingVertical">0dp</item>
-        <item name="elevation">0dp</item>0
+        <item name="elevation">0dp</item>
+        <item name="android:layout_gravity">center</item>
         <item name="addElevationShadow">false</item>
-        <item name="android:background">@drawable/rounded_corner</item>
         <item name="android:stateListAnimator">"@null"</item>
-    </style>
-    <style name="LogoText">
-        <item name="android:font">@font/hobo</item>
-        <item name="android:fontFamily">@font/hobo</item>
-        <item name="font">@font/hobo</item>
-        <item name="fontFamily">@font/hobo</item>
-        <item name="fontVariationSettings">"'wght' 600</item>
-        <item name="android:textSize">54sp</item>
-        <item name="android:textColor">@color/logo</item>
-        <item name="android:gravity">center</item>
     </style>
     <style name="LetterTextView" parent="Widget.AppCompat.TextView">
         <item name="android:font">@font/librefranklin</item>
@@ -27,6 +13,40 @@
         <item name="fontFamily">@font/librefranklin</item>
         <item name="fontVariationSettings">"'wght' 600</item>
         <item name="android:textColor">@color/on_state_unknown</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
+    </style>
+    <style name="Keyboard" parent="LetterTextView">
+        <item name="android:backgroundTint">@color/keyboard_bg</item>
+        <item name="android:textColor">@color/keyboard_on_bg</item>
+    </style>
+    <style name="HeaderTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/header_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="android:paddingTop">@dimen/header_title_padding_top</item>
+        <item name="android:paddingBottom">@dimen/header_title_padding_bottom</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+    <style name="HeaderSecond" parent="HeaderTitle">
+        <item name="android:textSize">@dimen/header_second</item>
+        <item name="android:paddingTop">@dimen/header_second_padding_top</item>
+        <item name="android:paddingBottom">@dimen/header_second_padding_bottom</item>
+    </style>
+    <style name="GameStats" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_marginVertical">0dp</item>
+        <item name="android:paddingVertical">2dp</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/statsview_text</item>
+    </style>
+    <style name="GameStatsValue" parent="GameStats">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/body_emph_text</item>
+        <item name="android:layout_gravity">end</item>
+    </style>
+    <style name="GameStatsValueNumOnly" parent="GameStatsValue">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/body_emph_text_numOnly</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 </resources>

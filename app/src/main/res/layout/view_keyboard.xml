@@ -46,8 +46,6 @@
         app:layout_constraintTop_toTopOf="@id/guideline_keyboard_02"
         app:layout_constraintBottom_toTopOf="@id/guideline_keyboard_32"
         android:orientation="horizontal">
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -71,14 +69,13 @@
         android:weightSum="12"
         android:background="@color/keyboard_bg">
 
-        <com.mine.helpfle.ui.ActionButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_enter"
-            android:backgroundTint="@color/keyboard_btnenter_bg"
+            style="@style/Keyboard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="@string/enter"
-            android:textColor="@color/keyboard_btnenter_text"
             android:contentDescription="@string/enter" />
 
         <LinearLayout
@@ -91,14 +88,13 @@
             android:orientation="horizontal">
         </LinearLayout>
 
-        <com.mine.helpfle.ui.ActionButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_delete"
-            android:backgroundTint="@color/keyboard_btndelete_bg"
+            style="@style/Keyboard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="@string/delete"
-            android:textColor="@color/keyboard_btndelete_text"
             android:contentDescription="@string/delete" />
 
     </LinearLayout>

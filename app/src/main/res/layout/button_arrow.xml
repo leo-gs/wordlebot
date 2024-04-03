@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintDimensionRatio="1:1">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_icon_guideline_vertical_start"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".20"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_icon_guideline_vertical_end"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".80"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_icon_guideline_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".50"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle"
+        android:backgroundTint="@color/primaryVariant"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="@id/button_icon_guideline_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/button_icon_guideline_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:contentDescription="@string/arrow_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fa_icon_arrow_right"
+        app:tint="@color/on_primary"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="@id/button_icon_guideline_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/button_icon_guideline_horizontal"
+        app:layout_constraintStart_toStartOf="@id/button_icon_guideline_vertical_start"
+        app:layout_constraintEnd_toEndOf="@id/button_icon_guideline_vertical_end"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

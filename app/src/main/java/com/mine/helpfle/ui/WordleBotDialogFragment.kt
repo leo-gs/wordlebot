@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mine.helpfle.Letter
 import com.mine.helpfle.R
-import com.mine.helpfle.ui.GridActivity.KeyboardStateManager
-import java.io.Serializable
 
 const val TAG_DIALOG_WORDLEBOT = "DIALOG_WORDLEBOT"
 

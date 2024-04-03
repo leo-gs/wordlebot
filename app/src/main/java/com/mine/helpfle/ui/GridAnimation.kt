@@ -7,14 +7,11 @@ import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ObjectAnimator.ofFloat
 import android.animation.ValueAnimator
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.cardview.widget.CardView
 import com.mine.helpfle.R
-
-const val TAG_GRIDANIMATION = "GRIDANIMATION"
 
 abstract class GridAnimation(var onAnimationComplete: () -> Unit) {
 
